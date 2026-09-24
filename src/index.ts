@@ -2,4 +2,6 @@
 export type { Infer } from "@/infer";
 
 export { id } from "@/primitives/id";
+export { port } from "@/primitives/port";
+export { repo } from "@/primitives/repo";
 export { value } from "@/primitives/value";
