@@ -2,17 +2,25 @@
   "name": "domab",
   "version": "0.1.0",
   "description": "🧩 Tiny, dependency-free TypeScript toolkit for defining type-safe domain abstractions.",
+  "homepage": "https://github.com/nehu3n/domab#readme",
+  "bugs": {
+    "url": "https://github.com/nehu3n/domab/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nehu3n/domab.git"
+  },
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     }
   },
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "files": [
     "dist",
     "readme.md"
