@@ -1,6 +1,6 @@
 {
   "name": "domab",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "🧩 Tiny, dependency-free TypeScript toolkit for defining type-safe domain abstractions.",
   "homepage": "https://github.com/nehu3n/domab#readme",
   "bugs": {
