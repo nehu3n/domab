@@ -100,3 +100,15 @@ test("errors preserve their payload", () => {
 
   expectTypeOf(UserExists).returns.toEqualTypeOf<UserExists>();
 });
+
+test("errors are constructible", () => {
+  const UserNotFound = error<{
+    userId: string;
+  }>("user.not_found");
+
+  expectTypeOf(UserNotFound).toMatchTypeOf<
+    new (data: {
+      userId: string;
+    }) => Error
+  >();
+});

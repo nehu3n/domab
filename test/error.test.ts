@@ -31,3 +31,43 @@ describe("error", () => {
     expect(instance.data).toBeUndefined();
   });
 });
+
+it("is callable and constructible", () => {
+  const UserExists = error<{
+    email: string;
+  }>("user.exists");
+
+  const called = UserExists({
+    email: "nehuen@example.com",
+  });
+
+  const constructed = new UserExists({
+    email: "nehuen@example.com",
+  });
+
+  expect(called).toBeInstanceOf(Error);
+  expect(constructed).toBeInstanceOf(Error);
+
+  expect(called.code).toBe("user.exists");
+  expect(constructed.code).toBe("user.exists");
+
+  expect(called.data).toEqual({
+    email: "nehuen@example.com",
+  });
+
+  expect(constructed.data).toEqual({
+    email: "nehuen@example.com",
+  });
+});
+
+it("supports instanceof with the definition", () => {
+  const UserNotFound = error<{
+    userId: string;
+  }>("user.not_found");
+
+  const instance = UserNotFound({
+    userId: "usr_1",
+  });
+
+  expect(instance).toBeInstanceOf(UserNotFound);
+});

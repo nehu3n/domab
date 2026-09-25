@@ -19,7 +19,7 @@
 
 It gives you a small set of primitives to define domain concepts, dependencies, operations, events, and errors — while keeping your domain independent from databases, frameworks, and infrastructure.
 
-**Zero dependencies · ~4 KB**
+**Zero dependencies · ~1 KB**
 
 ## Installation
 

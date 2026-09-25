@@ -7,8 +7,14 @@ type DomainError<Code extends string, Data> = Error &
   }>;
 
 type ErrorFactory<Code extends string, Data> = [Data] extends [undefined]
-  ? () => DomainError<Code, undefined>
-  : (data: Data) => DomainError<Code, Data>;
+  ? {
+      (): DomainError<Code, undefined>;
+      new (): DomainError<Code, undefined>;
+    }
+  : {
+      (data: Data): DomainError<Code, Data>;
+      new (data: Data): DomainError<Code, Data>;
+    };
 
 type ErrorDefinition<Code extends string, Data> = Definition<
   DomainError<Code, Data>
@@ -27,8 +33,12 @@ export function error<Data, const Code extends string = string>(
 ): ErrorDefinition<Code, Data>;
 
 export function error(code: string): ErrorDefinition<string, undefined> {
-  const create = (data?: unknown) => {
+  const prototype = Object.create(Error.prototype);
+
+  const create = function (this: unknown, data?: unknown) {
     const instance = new Error(code);
+
+    Object.setPrototypeOf(instance, prototype);
 
     instance.name = "DomabError";
 
@@ -49,6 +59,10 @@ export function error(code: string): ErrorDefinition<string, undefined> {
 
     return instance;
   };
+
+  Object.defineProperty(create, "prototype", {
+    value: prototype,
+  });
 
   return Object.assign(create, {
     code,
